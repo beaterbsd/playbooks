@@ -8,7 +8,7 @@
   tasks:
     - name: Explicitly update local repository catalogue
       when: ansible_facts["os_family"] == "FreeBSD"
-      command: pkg update
+      command: sudo pkg update
       register: update_result
       changed_when: "'FreeBSD repository update completed' in update_result.stdout"
 
