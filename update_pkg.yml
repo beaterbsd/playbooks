@@ -1,0 +1,19 @@
+- name: Upgrade installed packages on FreeBSD hosts
+  hosts: all
+  become: yes
+  
+  vars:
+    create_be: false
+
+  tasks:
+    - name: Explicitly update local repository catalogue
+      when: ansible_facts["os_family"] == "FreeBSD"
+      command: pkg update
+      register: update_result
+      changed_when: "'FreeBSD repository update completed' in update_result.stdout"
+
+    - name: Check for outdated packages
+      when: ansible_facts["os_family"] == "FreeBSD"
+      command: pkg version -RU -l \<
+      register: outdated_result
+      changed_when: outdated_result.stdout_lines | length > 0
