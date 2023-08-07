@@ -1,0 +1,11 @@
+# playbook to get the date
+
+- hosts: all
+  tasks:
+    - name: get the date
+      shell: date
+      register: date
+
+    - name: print the date
+      debug:
+        msg: "{{ date.stdout }}"
