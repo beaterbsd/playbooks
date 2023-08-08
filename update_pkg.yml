@@ -5,3 +5,7 @@
     - name: update package
       shell: sudo pkg update
       register: pkg_update
+# print the output
+    - name: print the output
+      debug:
+        msg: "{{ pkg_update.stdout }}"
