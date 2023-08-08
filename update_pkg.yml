@@ -18,4 +18,15 @@
     - name: print the output
       debug:
         msg: "pkg update fail"
-      when: pkg_update.stdout.find("up to date") != -1
+      when: pkg_update.stdout.find("up to date") != 0
+
+      ---
+- name: Update FreeBSD packages
+  hosts: your_freebsd_hosts
+  become: yes
+  ansible_become_method: sudo   # Puedes cambiar a "sudo" si prefieres usar sudo
+
+  tasks:
+    - name: Update package database
+      pkgng:
+        state: latest
