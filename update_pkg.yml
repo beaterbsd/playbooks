@@ -13,7 +13,7 @@
     - name: if fail
       debug:
         msg: "pkg is not up-to-date"
-      when: pkg_update.stdout.find("up-to-date") == -1
+      when: pkg_update.stdout.find("up to date") == -1
 
     - name: print the output
       debug:
