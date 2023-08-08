@@ -1,0 +1,14 @@
+---
+- name: Detect OS and Generate Playbooks
+  hosts: all
+  gather_facts: no
+
+  tasks:
+    - name: Run uname -a
+      command: uname -a
+      register: os_info
+
+    - name: Generate Playbook
+      include_tasks: generate_playbook.yml
+      vars:
+        os_info: "{{ os_info.stdout }}"
