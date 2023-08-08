@@ -17,5 +17,5 @@
 
     - name: print the output
       debug:
-        msg: "pkg is up-to-date"
-      when: pkg_update.stdout.find("up-to-date") != -1
+        msg: "pkg update fail"
+      when: pkg_update.stdout.find("up to date") != -1
