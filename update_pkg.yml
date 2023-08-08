@@ -2,7 +2,7 @@
 
 - hosts: all
   tasks:
-    - name: pkg update
+    - name: update package
       shell: sudo pkg update
       register: pkg_update
       debug:
