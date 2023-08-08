@@ -1,9 +1,9 @@
----
+# playbook to update pkg
+
 - hosts: all
-  become: yes
   tasks:
-    - name: Update pkg
-      pkgng:
-        name: pkg
-        state: latest
-        sudo: yes
+    - name: pkg update
+      shell: sudo pkg update
+      register: pkg_update
+      debug:
+        msg: "{{ date.stdout }}"
