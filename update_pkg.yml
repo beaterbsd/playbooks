@@ -5,5 +5,3 @@
     - name: update package
       shell: sudo pkg update
       register: pkg_update
-      debug:
-        msg: "{{ date.stdout }}"
