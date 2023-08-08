@@ -10,7 +10,7 @@
       debug:
         msg: "{{ pkg_update.stdout }}"
 # if msg contain "up to date" then print "pkg is up to date" else print "pkg is not up to date"
-    -name: if fail
+    - name: if fail
       debug:
         msg: "pkg is not up-to-date"
       when: pkg_update.stdout.find("up-to-date") == -1
