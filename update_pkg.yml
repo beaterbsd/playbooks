@@ -1,8 +1,10 @@
 ---
-- hosts: all
+- name: Update FreeBSD packages
+  hosts: all
   become: yes
+  become_method: sudo
+
   tasks:
-    - name: Update pkg
+    - name: Update package database
       pkgng:
-        name: pkg
         state: latest
