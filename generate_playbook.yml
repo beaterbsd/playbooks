@@ -1,0 +1,24 @@
+# generate_playbook.yml
+---
+- name: Generate Playbook
+  set_fact:
+    playbook_content: |
+      ---
+      - name: Update packages on {{ inventory_hostname }}
+        hosts: {{ inventory_hostname }}
+        become: yes
+        {% if "FreeBSD" in os_info %}
+        ansible_become_method: doas
+        {% else %}
+        ansible_become_method: sudo
+        {% endif %}
+        
+        tasks:
+          - name: Update package database
+            pkgng:
+              state: latest
+
+- name: Create Playbook File
+  copy:
+    content: "{{ playbook_content }}"
+    dest: "autogenerate/update_packages_{{ inventory_hostname }}.yml"
